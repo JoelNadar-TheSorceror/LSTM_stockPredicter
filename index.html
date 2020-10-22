@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<p>
+import math<br>
+import pandas_datareader as web<br>
+import numpy as np<br>
+import pandas as pd<br>
+from sklearn.preprocessing import MinMaxScaler<br>
+from keras.models import Sequential<br>
+from keras.layers import Dense, LSTM<br>
+import matplotlib.pyplot as plt<br>
+plt.style.use('fivethirtyeight')<br>
+<br>
+#{Only to visual the prediction and closing price history}<br>
+<br>
+#Get the stock quote<br>
+df = web.DataReader('^NSEI', data_source='yahoo', start='2016-11-01', end='2019-3-01')<br>
+<br>
+#Create a new dataframe with only the 'Close column'<br>
+data = df.filter(['Close'])<br>
+#Convert the dataframe to a numpy array<br>
+dataset = data.values<br>
+#Get the number of rows to train the model on<br>
+training_data_len = math.ceil( len(dataset) * 0.9)<br>
+<br>
+#Scale the data<br>
+scaler = MinMaxScaler(feature_range=(0,1))<br>
+scaled_data = scaler.fit_transform(dataset)<br>
+<br>
+#Create the training data set<br>
+#Create the scaled training data set<br>
+train_data = scaled_data[0:training_data_len , :]<br>
+#Split the data into x_train and y_train data sets<br>
+x_train = []<br>
+y_train = []<br>
+<br>
+for i in range(60, len(train_data)):<br>
+  x_train.append(train_data[i-60:i,0])<br>
+  y_train.append(train_data[i, 0])<br>
+<br>
+#Convert the x_train and y_train to numpy arrays<br>
+x_train, y_train = np.array(x_train), np.array(y_train)<br>
+<br>
+#Reshape the data<br>
+x_train = np.reshape(x_train, (x_train.shape[0], x_train.shape[1], 1))<br>
+x_train.shape<br>
+<br>
+#Build the LSTM model<br>
+pred_model = Sequential()<br>
+pred_model.add(LSTM(50,return_sequences=True, input_shape=(x_train.shape[1], 1)))<br>
+pred_model.add(LSTM(50, return_sequences=False))<br>
+pred_model.add(Dense(25))<br>
+pred_model.add(Dense(1))<br>
+<br>
+#Compile the model<br>
+pred_model.compile(optimizer='adam', loss='mean_squared_error')<br>
+<br>
+#Train the model<br>
+pred_model.fit(x_train, y_train, batch_size=1, epochs=1)<br>
+<br>
+#Create the testing data set<br>
+#Create a new array containing scaled values<br>
+test_data = scaled_data[training_data_len - 60: , :]<br>
+#Create the data sets x_test and y_test<br>
+x_test = []<br>
+y_test = dataset[training_data_len:, :]<br>
+for i in range(60, len(test_data)):<br>
+  x_test.append(test_data[i-60:i, 0])<br>
+<br>
+#Convert the data to a numpy array<br>
+x_test = np.array(x_test)<br>
+<br>
+#Reshape the data<br>
+x_test = np.reshape(x_test, (x_test.shape[0], x_test.shape[1], 1))<br>
+<br>
+#Get the models predicted price values<br>
+predictions = model.predict(x_test)<br>
+predictions = scaler.inverse_transform(predictions)<br>
+<br>
+#Get the root mean squarred error(RMSE)<br>
+rmse = np.sqrt( np.mean( predictions - y_test)**2)<br>
+print(f"RMSE value: {rmse}")<br>
+<br>
+#Plot the data<br>
+train = data[:training_data_len]<br>
+valid = data[training_data_len:]<br>
+valid['Predictions'] = predictions<br>
+#Visualize the data<br>
+plt.figure(figsize=(16,8))<br>
+plt.title('Model')<br>
+plt.xlabel('Date', fontsize=18)<br>
+plt.ylabel('Close Price INR(?)', fontsize=18)<br>
+plt.plot(train['Close'])<br>
+plt.plot(valid[['Close', 'Predictions']])<br>
+plt.legend(['Train', 'Val', 'Predictions'], loc='lower right')<br>
+plt.show()<br>
+
+P.S: I recommend you to do this on coab.research.google.com. You won't need to download the modules there
+</p>
+</body>
+</html>
