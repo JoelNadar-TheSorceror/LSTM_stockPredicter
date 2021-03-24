@@ -1,32 +1,36 @@
-body {
-    background-color: darkblue;
-    color: darkgray;
-    text-align: center;
+body, html{
+  height: 100%;
+  width: 100%;
+  background-color: whitesmoke !important;
 }
 
-*{
-    margin-bottom: 100px;
+#my-Container{
+  background-color: whitesmoke;
+  width: 100%;
+  height: 100vh !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-::placeholder {
-    color: darkgray;
+.tag-container-line{
+  text-align: justify;
+}
+.tag-container-line button{
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+.tag-container-line::after{
+  content: '';
+  width: 100%;
+  display: inline-block;
+}
+#result-holder{
+  width: 100%;
+}
+#result-holder div{
+  color: red
 }
 
-input {
-    background-color: transparent;
-    color: white;
-    border-color: thistle;
-}
-
-button {
-    background-color: #4CAF50;
-    /* Green */
-    border: none;
-    color: white;
-    border-radius: 12px;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+.selected{
+  background-color: gray !important;
 }
