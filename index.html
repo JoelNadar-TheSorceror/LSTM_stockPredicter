@@ -1,17 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS1</title>
-    <script src="index.js"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Welcome</h1>
-    <input type="text" id="one" placeholder="Enter a string or a number">
-    <input type="text" id="two" placeholder="Enter a string or a number">
-    <p id="output">This is a webpage that logs to console aswell as in this tag</p>
-    <button type="button" onclick="fun()">Click to fire</button>
-</body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Best Programming Langauge For Me</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <center>
+      <div style="height: 100vh;">
+        <div id="my-Container" class="row">
+          <div class="col-md-6 col-lg-6 col-sm-12" style="height: 100vh;overflow-y: scroll">
+            <h3 style="color: orangered" class="sticky-top">Tags Available</h3>
+            <br>
+            
+            <span class="tag-container-line">
+              <button class="btn btn-primary mr-2" id="Android" onclick="inputChange(this.id)">Android</button>
+              <button class="btn btn-success mr-2" id="Architecture-Neutral" onclick="inputChange(this.id)">Architecture-Neutral</button>
+              <button class="btn btn-info mr-2" id="Artificial-Intelligence" onclick="inputChange(this.id)">Artificial-Intelligence</button>
+              <button class="btn btn-warning mr-2" id="Begginer-Friendly" onclick="inputChange(this.id)">Begginer-Friendly</button>
+            </span>
+            <span class="tag-container-line">
+              <button class="btn btn-secondary mr-2" id="Class-Based" onclick="inputChange(this.id)">Class-Based</button>
+              <button class="btn btn-danger mr-2" id="Compiled" onclick="inputChange(this.id)">Compiled</button>
+              <button class="btn btn-primary mr-2" id="Data-handling" onclick="inputChange(this.id)">Data-handling</button>
+              <button class="btn btn-warning mr-2" id="DataScience" onclick="inputChange(this.id)">DataScience</button>
+            </span>
+            <span class="tag-container-line">
+              <button class="btn btn-success mr-2" id="Dynamic" onclick="inputChange(this.id)">Dynamic</button>
+              <button class="btn btn-danger mr-2" id="Freelancing" onclick="inputChange(this.id)">Freelancing</button>
+              <button class="btn btn-info mr-2" id="Full-Stack" onclick="inputChange(this.id)">Full-Stack</button>
+              <button class="btn btn-secondary mr-2" id="Function-Oriented" onclick="inputChange(this.id)">Function-Oriented</button>
+            </span>
+            <span class="tag-container-line">
+              <button class="btn btn-info mr-2" id="General-Purpose" onclick="inputChange(this.id)">General-Purpose</button>
+              <button class="btn btn-primary mr-2" id="High-Level" onclick="inputChange(this.id)">High-Level</button>
+              <button class="btn btn-success mr-2" id="High-Pay" onclick="inputChange(this.id)">High-Pay</button>
+              <button class="btn btn-danger mr-2" id="Highest-Pay" onclick="inputChange(this.id)">Highest-Pay</button>
+            </span>
+            <span class="tag-container-line">
+              <button class="btn btn-danger mr-2" id="Interpreted" onclick="inputChange(this.id)">Interpreted</button>
+              <button class="btn btn-info mr-2" id="MacOS" onclick="inputChange(this.id)">MacOS</button>
+              <button class="btn btn-warning mr-2" id="Server-Engineering" onclick="inputChange(this.id)">Server-Engineering</button>
+              <button class="btn btn-secondary mr-2" id="Middle-Level" onclick="inputChange(this.id)">Middle-Level</button>
+            </span>
+            <span class="tag-container-line">
+              <button class="btn btn-danger mr-2" id="Multi-Paradigm" onclick="inputChange(this.id)">Multi-Paradigm</button>
+              <button class="btn btn-secondary mr-2" id="Object-Oriented" onclick="inputChange(this.id)">Object-Oriented</button>
+              <button class="btn btn-success mr-2" id="Open-Source" onclick="inputChange(this.id)">Open-Source</button>
+              <button class="btn btn-info mr-2" id="Platform-Dependant" onclick="inputChange(this.id)">Platform-Dependant</button>
+            </span>
+            <span class="tag-container-line">
+              <button class="btn btn-primary mr-2" id="Platform-Independant" onclick="inputChange(this.id)">Platform-Independant</button>
+              <button class="btn btn-danger mr-2" id="Procedure-Oriented" onclick="inputChange(this.id)">Procedure-Oriented</button>
+              <button class="btn btn-warning mr-2" id="Scripting-Language" onclick="inputChange(this.id)">Scripting-Language</button>
+            </span>
+            <span class="tag-container-line">
+              <button class="btn btn-success mr-2" id="Software-Engineering" onclick="inputChange(this.id)">Software-Engineering</button>
+              <button class="btn btn-primary mr-2" id="Static" onclick="inputChange(this.id)">Static</button>
+              <button class="btn btn-info mr-2" id="System-Engineering" onclick="inputChange(this.id)">System-Engineering</button>
+              <button class="btn btn-danger mr-2" id="Text-Manipulation" onclick="inputChange(this.id)">Text-Manipulation</button>
+            </span>
+            <span class="tag-container-line">
+              <button class="btn btn-info mr-2" id="Versatile" onclick="inputChange(this.id)">Versatile</button>
+              <button class="btn btn-warning mr-2" id="Web-Development" onclick="inputChange(this.id)">Web-Development</button>
+              <button class="btn btn-primary mr-2" id="iOS" onclick="inputChange(this.id)">iOS</button>
+              <button class="btn btn-secondary mr-2" id="Mid-Pay" onclick="inputChange(this.id)">Mid-Pay</button>
+            </span>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6" style="overflow-y: scroll;height: 100%;">
+            <h3 style="color: orangered" class="sticky-top">What you should learn</h3>
+            <hr>
+            <div id="result-holder"><div><h1 class="lang-header">No Data Available</h1><hr></div></div>
+          </div>
+        </div>
+      </div>
+    </center>
+    <script src="script.js"></script>
+  </body>
 </html>
